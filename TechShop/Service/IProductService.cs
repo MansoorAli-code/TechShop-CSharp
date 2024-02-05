@@ -11,5 +11,6 @@ namespace TechShop.Service
         void GetProductDetails(int id);
         void UpdateProductInfo(int id);
         void IsProductInStock(int id);
+        void GetAllProducts();
     }
 }

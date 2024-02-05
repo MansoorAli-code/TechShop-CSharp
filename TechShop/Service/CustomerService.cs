@@ -22,7 +22,10 @@ namespace TechShop.Service
 
         public void CustomerRegistration(Customer customer)
         {
-
+            if (_customerRepository.AddCustomer(customer))
+            {
+                Console.WriteLine("Customer successfully registered");
+            }
         }
 
         public void CalculateTotalOrders(int id)

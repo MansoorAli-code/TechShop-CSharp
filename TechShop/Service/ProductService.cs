@@ -15,6 +15,16 @@ namespace TechShop.Service
         {
             _productRepo = new ProductRepository();
         }
+
+        public void GetAllProducts()
+        {
+            List<Product> products = _productRepo.GetAllProducts();
+            foreach (Product product in products)
+            {
+                Console.WriteLine(product);
+            }
+        }
+
         public void GetProductDetails(int id)
         {
             Product product = _productRepo.GetProductDetails(id);

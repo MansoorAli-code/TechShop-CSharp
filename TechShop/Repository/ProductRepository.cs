@@ -20,6 +20,36 @@ namespace TechShop.Repository
             cmd = new SqlCommand();
         }
 
+        public List<Product> GetAllProducts(int id)
+        {
+            List<Product> products = new List<Product>();
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    conn.Open();
+                    cmd.CommandText = "select * from products where ProductID=@id";
+                    cmd.Parameters.AddWithValue("@id", id);
+                    cmd.Connection = conn;
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        Product product = new Product();
+                        product.ProductID = (int)reader["ProductID"];
+                        product.ProductName = (string)reader["ProductName"];
+                        product.Description = (string)reader["Description"];
+                        product.Price = (decimal)reader["Price"];
+                        products.Add(product);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return products;
+        }
+
         public Product GetProductDetails(int id)
         {
             try
